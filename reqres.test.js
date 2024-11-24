@@ -10,7 +10,7 @@ const ajv = new Ajv();
 const URL = "https://reqres.in/api";
 
 describe("тестирование API reqres.in", () => {
-  test("GET: /users позитивная проверка (200)", async () => {
+  test("GET: /users получение пользователей. Политивная проверка (Статус: 200)", async () => {
     const response = await fetch(`${URL}/users`);
     expect(response.status).toBe(200);
 
@@ -20,7 +20,7 @@ describe("тестирование API reqres.in", () => {
     expect(valid).toBe(true);
   });
 
-  test("GET: /users/{id} позитивная проверка (200)", async () => {
+  test("GET: /users/{id} получение пользователей по id. Позитивная проверка (Статус: 200)", async () => {
     const response = await fetch(`${URL}/users/1`);
     expect(response.status).toBe(200);
 
@@ -30,14 +30,14 @@ describe("тестирование API reqres.in", () => {
     expect(valid).toBe(true);
   });
 
-  test("GET: /users/{id} негативная проверка (404)", async () => {
+  test("GET: /users/{id} получение пользователей по id. Негативная проверка (Статус: 404)", async () => {
     const response = await fetch(`${URL}/users/1123123`);
     expect(response.status).toBe(404);
   });
 
   //PUT /register не работает(
   //а PUT /users работает
-  test("POST: /users позитивная проверка (201)", async () => {
+  test("POST: /users регистрация нового пользователя. Позитивная проверка (Статус: 201)", async () => {
     const response = await fetch(`${URL}/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -55,7 +55,7 @@ describe("тестирование API reqres.in", () => {
     expect(valid).toBe(true);
   });
 
-  test("POST: /register негативная проверка (400)", async () => {
+  test("POST: /register регистрация нового пользователя. Негативная проверка (Статус: 400)", async () => {
     const response = await fetch(`${URL}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -72,7 +72,7 @@ describe("тестирование API reqres.in", () => {
     expect(valid).toBe(true);
   });
 
-  test("PUT: /users/{id} позитивная проверка (200)", async () => {
+  test("PUT: /users/{id} обновление информации пользователя. Позитивная проверка (Статус: 200)", async () => {
     const response = await fetch(`${URL}/users/1`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -85,7 +85,7 @@ describe("тестирование API reqres.in", () => {
     expect(response.status).toBe(200);
   });
 
-  test("PATCH: /users/{id} позитивная проверка (200)", async () => {
+  test("PATCH: /users/{id} изменение информации пользователя. Позитивная проверка (Статус: 200)", async () => {
     const response = await fetch(`${URL}/users/1`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -98,7 +98,7 @@ describe("тестирование API reqres.in", () => {
     expect(response.status).toBe(200);
   });
 
-  test("DELETE: /users/{id} позитивная проверка (200)", async () => {
+  test("DELETE: /users/{id} удаление информации о пользователе. Позитивная проверка (Статус: 204)", async () => {
     const response = await fetch(`${URL}/users/1`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
